@@ -6,6 +6,7 @@ namespace Library.Core.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Year { get; set; }
         public string Genre { get; set; }
         public int NumberOfPages { get; set; }
         public int IdEditorial { get; set; }

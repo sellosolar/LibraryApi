@@ -23,7 +23,10 @@ namespace Library.Infrastructure.Repositories
 
         public async Task<IEnumerable<Book>> GetBooks()
         {
-            return await _context.Books.ToListAsync();
+            return await _context.Books
+                .Include(b => b.Author)
+                .Include(b => b.Editorial)
+                .ToListAsync();
         }
 
         public async Task InsertBook(Book book)

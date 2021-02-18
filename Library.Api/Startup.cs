@@ -57,6 +57,7 @@ namespace Library.Api
 
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

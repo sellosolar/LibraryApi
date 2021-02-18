@@ -27,6 +27,8 @@ namespace Library.Infrastructure.Data
 
             modelBuilder.Entity<Author>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.ToTable("Author");
 
                 entity.Property(e => e.Id);
@@ -51,6 +53,8 @@ namespace Library.Infrastructure.Data
 
             modelBuilder.Entity<Book>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.ToTable("Book");
 
                 entity.Property(e => e.Id);
@@ -59,6 +63,9 @@ namespace Library.Infrastructure.Data
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Year)
+                    .IsRequired();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -80,6 +87,8 @@ namespace Library.Infrastructure.Data
 
             modelBuilder.Entity<Editorial>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.ToTable("Editorial");
 
                 entity.Property(e => e.Id);
@@ -103,6 +112,9 @@ namespace Library.Infrastructure.Data
                     .IsRequired()
                     .HasMaxLength(120)
                     .IsUnicode(false);
+
+                entity.Property(e => e.MaxBooksToRegister)
+                    .IsRequired();
             });
         }
     }

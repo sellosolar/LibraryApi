@@ -4,6 +4,7 @@ using Library.Core.Entities;
 using Library.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Library.Api.Controllers
@@ -26,6 +27,19 @@ namespace Library.Api.Controllers
         {
             var ediorial = await _editorialRepository.GetEditorials();
             var editorialsDto = _mapper.Map<IEnumerable<EditorialDto>>(ediorial);
+            return Ok(editorialsDto);
+        }
+
+        [HttpGet("GetEditorialsForSelect")]
+        public async Task<IActionResult> GetEditorialsForSelect()
+        {
+            var editorials = await _editorialRepository.GetEditorials();
+            var editorialsDto = _mapper.Map<List<EditorialDto>>(editorials).Select(e => new
+            {
+                e.Id,
+                Value = e.Name
+            });
+
             return Ok(editorialsDto);
         }
 
